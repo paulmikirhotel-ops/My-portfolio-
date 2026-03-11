@@ -25,7 +25,7 @@ const PROJECTS = [
     tags: ['React', 'Three.js', 'CSS'],
     desc: 'This very portfolio — built with React and Three.js featuring 3D animations and dark luxury design.',
     live: 'https://paul-mensah-dev-portfolio.onrender.com',
-    code: 'https://github.com/paulmikirhotel-ops/My-portfolio',
+    code: 'https://github.com/paulmikirhotel-ops/My-portfolio-',
   },
 ]
 
