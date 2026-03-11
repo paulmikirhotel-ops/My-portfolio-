@@ -1,0 +1,28 @@
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.6rem var(--section-px);
+  transition: background 0.4s, padding 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+.navbar--scrolled {
+  background: rgba(8,8,8,0.88); backdrop-filter: blur(16px);
+  padding: 1rem var(--section-px); border-bottom-color: var(--border);
+}
+.navbar__logo { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--white); }
+.navbar__logo-accent { font-weight: 700; color: var(--gold); font-style: italic; }
+.navbar__links { display: flex; align-items: center; gap: 2.4rem; list-style: none; }
+.navbar__link { background: none; border: none; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); transition: color 0.25s; padding: 0; }
+.navbar__link:hover, .navbar__link--active { color: var(--gold); }
+.navbar__dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--gold); animation: navPulse 2.5s infinite; }
+@keyframes navPulse { 0%,100% { box-shadow: 0 0 0 0 var(--accent-glow); } 50% { box-shadow: 0 0 0 5px rgba(200,169,110,0); } }
+.navbar__burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+.navbar__burger span { display: block; width: 22px; height: 1px; background: var(--white); transition: all 0.3s; }
+.navbar__burger--open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
+.navbar__burger--open span:nth-child(2) { opacity: 0; }
+.navbar__burger--open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+.navbar__drawer { display: none; position: fixed; inset: 0; background: rgba(8,8,8,0.97); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; z-index: 490; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.navbar__drawer--open { opacity: 1; pointer-events: all; }
+.navbar__drawer-link { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 300; color: var(--white); background: none; border: none; transition: color 0.25s; }
+.navbar__drawer-link:hover { color: var(--gold); }
+@media (max-width: 768px) { .navbar__links { display: none; } .navbar__burger { display: flex; } .navbar__drawer { display: flex; } }

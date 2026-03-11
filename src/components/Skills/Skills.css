@@ -1,0 +1,7 @@
+.skills__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.4rem; margin-top: 1rem; }
+.skills__card { background: var(--bg-surface); border: 1px solid var(--border); padding: 2rem 1.6rem; border-radius: 2px; transition: border-color 0.3s, transform 0.3s; }
+.skills__card:hover { border-color: var(--gold); transform: translateY(-4px); }
+.skills__group { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 400; }
+.skills__tags { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.skills__tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); background: var(--bg-surface2); border: 1px solid var(--border); padding: 0.32rem 0.7rem; border-radius: 2px; transition: all 0.2s; }
+.skills__tag:hover { color: var(--gold); border-color: var(--gold); background: var(--accent-glow); }

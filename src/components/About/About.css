@@ -1,0 +1,154 @@
+.about {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.5s;
+}
+.about__grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+
+/* ── PHOTO ── */
+.about__photo-wrap {
+  position: relative;
+  width: clamp(200px, 22vw, 300px);
+  height: clamp(200px, 22vw, 300px);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about__photo-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.about__photo-ring--outer {
+  inset: -16px;
+  border: 1px solid var(--accent-border);
+}
+.about__photo-ring--inner {
+  inset: -6px;
+  border: 1px solid var(--accent-border);
+  opacity: 0.6;
+}
+.about__photo-ring--spin {
+  inset: -26px;
+  border: 1px solid transparent;
+  border-top-color: var(--accent);
+  border-right-color: var(--accent-border);
+  animation: aboutRingRotate 10s linear infinite;
+}
+@keyframes aboutRingRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.about__photo-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--accent);
+  box-shadow:
+    0 0 0 4px var(--accent-border),
+    0 0 35px var(--accent-glow),
+    0 0 70px var(--accent-glow);
+  position: relative;
+  transition: box-shadow 0.5s;
+}
+.about__photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: grayscale(15%) contrast(1.05);
+  transition: filter 0.4s, transform 0.5s;
+}
+.about__photo-frame:hover .about__photo-img {
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.04);
+}
+.about__photo-overlay {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--accent-glow), transparent 60%);
+  pointer-events: none;
+}
+.about__photo-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  pointer-events: none;
+}
+.about__photo-dot--tl { top: 12px; left: 20px; animation: aboutDotPulse 3s 0s infinite; }
+.about__photo-dot--br { bottom: 12px; right: 20px; animation: aboutDotPulse 3s 1.5s infinite; }
+@keyframes aboutDotPulse {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.7); opacity: 0.4; }
+}
+.about__photo-tag {
+  position: absolute;
+  bottom: -1.6rem;
+  left: 50%; transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-surface2);
+  border: 1px solid var(--border);
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: background 0.5s, border-color 0.5s;
+}
+.about__photo-tag-dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: aboutDotPulse 2s infinite;
+}
+
+/* ── RIGHT COLUMN ── */
+.about__right { display: flex; flex-direction: column; gap: 2.5rem; }
+.about__text p { color: var(--muted); line-height: 1.85; margin-bottom: 1.2rem; }
+.about__text strong { color: var(--text); font-weight: 500; }
+.about__cta { margin-top: 1.6rem; }
+
+.about__stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.about__stat-card {
+  background: var(--bg-surface2);
+  border: 1px solid var(--border);
+  padding: 1.4rem 1rem;
+  border-radius: 2px;
+  transition: border-color 0.3s, transform 0.3s, background 0.5s;
+}
+.about__stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.about__stat-num {
+  font-family: var(--font-serif);
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--accent); line-height: 1;
+}
+.about__stat-label {
+  font-family: var(--font-mono); font-size: 0.58rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-top: 0.4rem;
+}
+
+@media (max-width: 900px) {
+  .about__grid { grid-template-columns: 1fr; gap: 4rem; justify-items: center; text-align: center; }
+  .about__stats { grid-template-columns: repeat(2, 1fr); }
+  .about__cta { display: flex; justify-content: center; }
+  .about__text p { text-align: left; }
+}

@@ -1,0 +1,100 @@
+.theme-switcher {
+  position: fixed;
+  right: 1.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 600;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--accent-border);
+  border-radius: 40px;
+  padding: 1rem 0.7rem;
+  cursor: none;
+
+  transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
+}
+
+.theme-switcher:hover {
+  box-shadow: 0 0 20px var(--accent-glow);
+  border-color: var(--accent);
+}
+
+/* Icon */
+.theme-switcher__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  transition: color 0.4s, transform 0.4s;
+}
+.theme-switcher:hover .theme-switcher__icon {
+  transform: rotate(20deg) scale(1.15);
+}
+
+/* Label */
+.theme-switcher__label {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  writing-mode: vertical-rl;
+  transition: color 0.4s;
+}
+
+/* Color dot */
+.theme-switcher__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 0.2rem;
+  transition: background 0.4s;
+  animation: switcherPulse 2.5s infinite;
+}
+
+@keyframes switcherPulse {
+  0%,100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+  50%      { box-shadow: 0 0 0 5px transparent; }
+}
+
+/* Gold theme styles */
+.theme-switcher--gold {
+  border-color: rgba(200,169,110,0.2);
+}
+.theme-switcher--gold .theme-switcher__icon,
+.theme-switcher--gold .theme-switcher__label,
+.theme-switcher--gold .theme-switcher__dot {
+  color: var(--accent);
+}
+
+/* Blue theme styles */
+.theme-switcher--blue {
+  border-color: rgba(0,210,255,0.2);
+}
+.theme-switcher--blue .theme-switcher__icon,
+.theme-switcher--blue .theme-switcher__label {
+  color: var(--accent);
+}
+.theme-switcher--blue .theme-switcher__dot {
+  background: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .theme-switcher {
+    top: auto;
+    bottom: 2rem;
+    right: 1.2rem;
+    transform: none;
+    flex-direction: row;
+    padding: 0.7rem 1rem;
+    border-radius: 40px;
+  }
+  .theme-switcher__label { writing-mode: horizontal-tb; }
+}
