@@ -16,7 +16,7 @@ const PROJECTS = [
     title: 'Hospital Site API',
     tags: ['Express', 'MongoDB', 'JWT'],
     desc: 'RESTful API for a hospital platform — patient records, appointments, and secure JWT auth.',
-    live: 'https://hospital-web-app-8slq.onrender.com',
+    live: 'https://sjchliberia.vercel.app/',
     code: 'https://github.com/paulmikirhotel-ops/hospital-web-app-full-Stack',
   },
   {
