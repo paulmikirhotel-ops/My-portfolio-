@@ -1,7 +1,8 @@
 {
   "name": "paul-mensah-portfolio",
+  "description": "Portfolio of Paul Miki Mensah, MERN stack developer (React, Vite, Three.js)",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,10 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^12.35.0",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/dm-mono": "^5.3.0",
+    "@fontsource/syne": "^5.3.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-icons": "^5.6.0",
     "three": "^0.183.2"
   },
   "devDependencies": {
@@ -27,10 +29,5 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "vite": "^7.3.1"
-  },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "eslint.config.js",
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

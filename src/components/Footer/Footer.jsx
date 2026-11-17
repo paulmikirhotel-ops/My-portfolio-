@@ -25,7 +25,7 @@ export default function Footer() {
         {/* ── NAV + SOCIALS ── */}
         <div className="footer__mid">
           <nav className="footer__nav">
-            {['about','projects','contact'].map(id => (
+            {['about','skills','projects','contact'].map(id => (
               <button key={id} className="footer__nav-link" onClick={() => scrollTo(id)}>
                 {id.charAt(0).toUpperCase() + id.slice(1)}
               </button>
@@ -36,7 +36,6 @@ export default function Footer() {
             {[
               { label: 'GitHub',   href: 'https://github.com/paulmikirhotel-ops' },
               { label: 'LinkedIn', href: 'https://www.linkedin.com/in/paul-miki-mensah-48120b3b5' },
-              { label: 'Twitter',  href: '#' },
             ].map(({ label, href }) => (
               <a key={label} href={href} className="footer__social" target="_blank" rel="noopener noreferrer">
                 {label}

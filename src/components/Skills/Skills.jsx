@@ -3,10 +3,10 @@ import useScrollReveal from '../../hooks/useScrollReveal'
 import './Skills.css'
 
 const SKILLS = [
-  { group: 'Frontend',  items: ['React', 'JavaScript ES6+', 'HTML5', 'CSS3', 'Tailwind CSS'] },
-  { group: 'Backend',   items: ['Node.js', 'Express.js', 'REST APIs', 'JWT Auth'] },
+  { group: 'Frontend',  items: ['React', 'JavaScript ES6+', 'Redux', 'Three.js', 'HTML5', 'CSS3', 'Tailwind CSS'] },
+  { group: 'Backend',   items: ['Node.js', 'Express.js', 'REST APIs', 'JWT Auth', 'Role-based Access'] },
   { group: 'Database',  items: ['MongoDB', 'Mongoose', 'Atlas', 'Aggregation'] },
-  { group: 'Tools',     items: ['Git & GitHub', 'VS Code', 'Postman', 'Figma', 'Vercel'] },
+  { group: 'Tools',     items: ['Git & GitHub', 'VS Code', 'Postman', 'Figma', 'Netlify', 'Vercel', 'Render', 'Cloudinary'] },
 ]
 
 export default function Skills() {

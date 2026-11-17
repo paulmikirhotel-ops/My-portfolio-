@@ -52,17 +52,23 @@ export default function About() {
                 <strong>React</strong>. I believe great software is born from
                 clarity, craft, and care.
               </p>
+              <p>
+                I'm also studying <strong>Mathematics</strong> at the University of
+                Liberia, which shapes how I handle data, reporting, and logic. My
+                projects focus on software for the institutions around me:
+                community finance, healthcare, and local commerce.
+              </p>
               <div className="about__cta">
-                <a className="btn btn-ghost" href="/paul-mensah-cv.pdf" download>Download CV</a>
+                <a className="btn btn-ghost" href="#contact">Get in touch</a>
               </div>
             </div>
 
             <div ref={r4} className="about__stats">
               {[
-                ['1+',  'Year of Experience'],
-                ['3+', 'Projects Built'],
-                ['4',   'Core MERN Skills'],
-                ['∞',   'Lines of Code'],
+                ['1+', 'Year of Experience'],
+                ['3',  'Live Apps'],
+                ['6',  'Projects Built & In Progress'],
+                ['4',  'Core MERN Skills'],
               ].map(([n, l]) => (
                 <div key={l} className="about__stat-card">
                   <div className="about__stat-num">{n}</div>

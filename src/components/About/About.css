@@ -138,6 +138,7 @@
 .about__stat-num {
   font-family: var(--font-serif);
   font-size: 2.4rem; font-weight: 700;
+  font-variant-numeric: lining-nums; font-feature-settings: 'lnum';
   color: var(--accent); line-height: 1;
 }
 .about__stat-label {

@@ -18,7 +18,8 @@ export default function Navbar() {
         if (r.top <= 120 && r.bottom >= 120) setActive(l.toLowerCase())
       })
     }
-    window.addEventListener('scroll', onScroll)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
@@ -44,7 +45,7 @@ export default function Navbar() {
         <li><span className="navbar__dot" /></li>
       </ul>
       <button className={`navbar__burger ${open ? 'navbar__burger--open' : ''}`}
-        onClick={() => setOpen(!open)} aria-label="Menu">
+        onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
         <span /><span /><span />
       </button>
       <div className={`navbar__drawer ${open ? 'navbar__drawer--open' : ''}`}>

@@ -1,7 +1,7 @@
 // src/components/SceneBackground/SceneBackground.jsx
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
-import { useTheme } from '../../context/ThemeContext'
+import { useTheme } from '../../hooks/useTheme'
 import './SceneBackground.css'
 
 export default function SceneBackground() {
@@ -32,8 +32,12 @@ export default function SceneBackground() {
     const C_LIGHT1= isBlue ? 0x00d2ff : 0xc8a96e
     const C_LIGHT2= isBlue ? 0x0066ff : 0xe8c97e
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false })
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    // Lighter scene on phones; static scene for people who prefer reduced motion
+    const isMobile     = window.matchMedia('(max-width: 768px)').matches
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: !isMobile, alpha: false })
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2))
     renderer.setSize(window.innerWidth, window.innerHeight)
     renderer.setClearColor(C_BG, 1)
 
@@ -74,7 +78,7 @@ export default function SceneBackground() {
     const ring2 = mkRing(2.45, 0.10, Math.PI*0.5, Math.PI*0.22)
 
     // ── Floating particles (full page) ──
-    const N = 2400, pPos = new Float32Array(N*3)
+    const N = isMobile ? 900 : 2400, pPos = new Float32Array(N*3)
     for (let i = 0; i < N; i++) {
       pPos[i*3]   = (Math.random()-0.5) * 28
       pPos[i*3+1] = (Math.random()-0.5) * 40   // tall — spans all sections
@@ -182,8 +186,9 @@ export default function SceneBackground() {
 
     const animate = () => {
       animId = requestAnimationFrame(animate)
-      const t = clock.getElapsedTime()
-      const { x, y } = mouseRef.current
+      if (document.hidden) return // don't render while the tab is in the background
+      const t = reduceMotion ? 0 : clock.getElapsedTime()
+      const { x, y } = reduceMotion ? { x: 0, y: 0 } : mouseRef.current
 
       // Scroll offset — camera follows page scroll
       const scrollY = window.scrollY / window.innerHeight
@@ -234,6 +239,13 @@ export default function SceneBackground() {
     return () => {
       cancelAnimationFrame(animId)
       window.removeEventListener('resize', onResize)
+      // Free GPU memory: the scene is rebuilt each time the theme changes
+      scene.traverse(obj => {
+        if (obj.geometry) obj.geometry.dispose()
+        if (obj.material) {
+          (Array.isArray(obj.material) ? obj.material : [obj.material]).forEach(m => m.dispose())
+        }
+      })
       renderer.dispose()
     }
   }, [theme])

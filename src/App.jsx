@@ -1,5 +1,5 @@
-import React from 'react'
-import { ThemeProvider } from './context/ThemeContext'
+import React, { lazy, Suspense } from 'react'
+import { ThemeProvider } from './context/ThemeProvider'
 import Navbar          from './components/Navbar/Navbar'
 import Hero            from './components/Hero/Hero'
 import About           from './components/About/About'
@@ -9,12 +9,16 @@ import Contact         from './components/Contact/Contact'
 import Footer          from './components/Footer/Footer'
 import Cursor          from './components/shared/Cursor'
 import ThemeSwitcher   from './components/ThemeSwitcher/ThemeSwitcher'
-import SceneBackground from './components/SceneBackground/SceneBackground'
+
+// Three.js is large, so the 3D background loads after the page is usable.
+const SceneBackground = lazy(() => import('./components/SceneBackground/SceneBackground'))
 
 export default function App() {
   return (
     <ThemeProvider>
-      <SceneBackground />
+      <Suspense fallback={null}>
+        <SceneBackground />
+      </Suspense>
       <Cursor />
       <ThemeSwitcher />
       <Navbar />

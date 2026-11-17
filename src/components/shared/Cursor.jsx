@@ -7,10 +7,19 @@ export default function Cursor() {
   const pos     = useRef({ x: 0, y: 0 })
   const ring    = useRef({ x: 0, y: 0 })
   const raf     = useRef(null)
+  const seen    = useRef(false)
 
   useEffect(() => {
     const onMove = (e) => {
       pos.current = { x: e.clientX, y: e.clientY }
+      if (!seen.current) {
+        // First movement: place the ring on the pointer and reveal both,
+        // so nothing sits in the top-left corner before the mouse moves.
+        seen.current = true
+        ring.current = { x: e.clientX, y: e.clientY }
+        if (dotRef.current)  dotRef.current.style.opacity  = '1'
+        if (ringRef.current) ringRef.current.style.opacity = '1'
+      }
       if (dotRef.current) {
         dotRef.current.style.left = e.clientX + 'px'
         dotRef.current.style.top  = e.clientY + 'px'
@@ -35,8 +44,8 @@ export default function Cursor() {
 
   return (
     <>
-      <div ref={dotRef}  className="cursor-dot"  />
-      <div ref={ringRef} className="cursor-ring" />
+      <div ref={dotRef}  className="cursor-dot"  aria-hidden="true" />
+      <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
     </>
   )
 }

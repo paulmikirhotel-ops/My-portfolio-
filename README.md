@@ -1,18 +1,53 @@
-# React + Vite
+# Paul Miki Mensah: Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of Paul Miki Mensah, a MERN stack developer in Liberia.
+Live site: https://paul-mensah-dev-portfolio.onrender.com
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + Vite 7
+- Three.js for the 3D background (lazy-loaded after first paint)
+- Plain CSS with a gold/blue theme switcher (choice is remembered in `localStorage`)
+- Self-hosted fonts via `@fontsource` (Cormorant Garamond, Syne, DM Mono)
 
-## React Compiler
+## Getting started
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+```bash
+npm install
+npm run dev      # local dev server
+npm run lint     # ESLint
+npm run build    # production build in dist/
+npm run preview  # serve the production build locally
+```
 
-Note: This will impact Vite dev & build performances.
+## Project structure
 
-## Expanding the ESLint configuration
+```
+src/
+  components/     one folder per section (Hero, About, Skills, Projects, Contact, Footer, ...)
+  context/        theme provider and context
+  hooks/          useTheme, useScrollReveal
+  styles/         global.css: theme variables, base styles, buttons
+public/           favicon, photo, robots.txt, sitemap.xml
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Editing content
+
+- **Projects:** edit the `PROJECTS` array at the top of `src/components/Projects/Projects.jsx`.
+  Set `status` to `'live'` or `'dev'`, and add `live` and/or `code` URLs. Cards
+  with no link show "Coming soon".
+- **Skills:** edit the `SKILLS` array in `src/components/Skills/Skills.jsx`.
+- **SEO and social previews:** edit the `<head>` in `index.html`.
+
+## Accessibility and performance notes
+
+- The custom cursor is used only with a real mouse; touch devices and small
+  screens get the normal cursor.
+- Animations and the 3D scene respect `prefers-reduced-motion`.
+- The 3D scene uses fewer particles on phones and pauses while the tab is hidden.
+
+## Adding a CV
+
+Place the PDF at `public/paul-mensah-cv.pdf`, then add a button that links to
+`/paul-mensah-cv.pdf` in `Hero.jsx` and `About.jsx`. The "Download CV" buttons
+were replaced with "Contact" buttons until the file exists.
